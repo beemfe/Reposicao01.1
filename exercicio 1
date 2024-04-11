@@ -1,0 +1,62 @@
+class Ingresso {
+    private String identificador;
+    private float valor;
+
+    public Ingresso(String identificador, float valor) {
+        this.identificador = identificador;
+        this.valor = valor;
+    }
+
+    public float valorFinal(float taxaConveniencia) {
+        return valor + taxaConveniencia;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+}
+
+class IngressoVIP extends Ingresso {
+    private String funcao;
+
+    public IngressoVIP(String identificador, float valor, String funcao) {
+        super(identificador, valor);
+        this.funcao = funcao;
+    }
+
+    public float valorFinal(float taxaConveniencia) {
+        return super.valorFinal(taxaConveniencia) * 1.18f;
+    }
+
+    public String getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Ingresso ingressoNormal = new Ingresso("001", 100.0f);
+        IngressoVIP ingressoVip = new IngressoVIP("002", 150.0f, "VIP Gold");
+
+        float taxaConveniencia = 10.0f;
+
+        System.out.println("Valor do Ingresso Normal: R$" + ingressoNormal.valorFinal(taxaConveniencia));
+        System.out.println("Valor do Ingresso VIP: R$" + ingressoVip.valorFinal(taxaConveniencia));
+    }
+}
